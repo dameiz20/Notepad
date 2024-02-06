@@ -89,20 +89,20 @@ namespace DLM.Notepad.UI
                 StreamReader streamReader;
                 lblInfo.Text = string.Empty;
 
-                if (File.Exists(strFileName))
+                if (File.Exists(filename))
                 {
-                    streamReader = File.OpenText(strFileName);
+                    streamReader = File.OpenText(filename);
                     string contents = streamReader.ReadToEnd();
 
                     streamReader.Close();
                     streamReader = null;
 
                     lblInfo.Text = contents;
-                    lblStatus.Text = "Succefully read " + strFileName;
+                    lblStatus.Text = "Succefully read " + filename;
                 }
                 else
                 {
-                    throw new Exception(strFileName + " does not exist");
+                    throw new Exception(filename + " does not exist");
                 }
             }
             catch (Exception ex)
@@ -117,7 +117,7 @@ namespace DLM.Notepad.UI
             try
             {
                 lblStatus.ForeColor = Color.Blue;
-                if(!string.IsNullOrEmpty(filename) && File.Exists(filename))
+                if (!string.IsNullOrEmpty(filename) && File.Exists(filename))
                 {
                     File.Delete(filename);
                     lblStatus.Text = $"{filename} was deleted";
@@ -127,13 +127,51 @@ namespace DLM.Notepad.UI
                     throw new FileNotFoundException($"{filename} not set or does not exist");
                 }
             }
-            catch(FileNotFoundException ex)
+            catch (FileNotFoundException ex)
             {
                 lblStatus.Text = ex.Message;
                 lblStatus.ForeColor = Color.Purple;
             }
             catch (Exception ex)
             {
+                lblStatus.Text = ex.Message;
+                lblStatus.ForeColor = Color.Red;
+            }
+        }
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+            // Opacity = trackBar1.Value / 100.0;
+
+            //int number1 = trackBar1.Value / 100;
+            //int number2 = trackBar1.Value % 100;
+            //Text = $"{number1} r {number2}";
+
+        }
+
+        private void btnWriteAppend_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                statusStrip.ForeColor = Color.Blue;
+
+                StreamWriter streamWriter;
+
+                //Use the StreamWriter to create a file.
+                streamWriter = File.AppendText(filename);
+
+                //put the data in the file
+                string strContents = txtInfo.Text;
+                streamWriter.WriteLine(strContents);
+
+                //Clean Up
+                streamWriter.Close();
+
+                lblStatus.Text =$"File written ({ filename})";
+            }
+            catch (Exception ex)
+            {
+
                 lblStatus.Text = ex.Message;
                 lblStatus.ForeColor = Color.Red;
             }

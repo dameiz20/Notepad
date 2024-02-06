@@ -41,7 +41,7 @@
             btnWrite = new Button();
             btnRead = new Button();
             btnDelete = new Button();
-            button5 = new Button();
+            btnWriteAppend = new Button();
             button6 = new Button();
             button7 = new Button();
             button8 = new Button();
@@ -58,8 +58,10 @@
             statusStrip = new StatusStrip();
             lblStatus = new ToolStripStatusLabel();
             toolStripStatusLabel1 = new ToolStripStatusLabel();
+            trackBar1 = new TrackBar();
             menuStrip1.SuspendLayout();
             statusStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)trackBar1).BeginInit();
             SuspendLayout();
             // 
             // menuStrip1
@@ -157,14 +159,15 @@
             btnDelete.UseVisualStyleBackColor = true;
             btnDelete.Click += btnDelete_Click;
             // 
-            // button5
+            // btnWriteAppend
             // 
-            button5.Location = new Point(12, 190);
-            button5.Name = "button5";
-            button5.Size = new Size(131, 29);
-            button5.TabIndex = 5;
-            button5.Text = "button5";
-            button5.UseVisualStyleBackColor = true;
+            btnWriteAppend.Location = new Point(12, 190);
+            btnWriteAppend.Name = "btnWriteAppend";
+            btnWriteAppend.Size = new Size(131, 29);
+            btnWriteAppend.TabIndex = 5;
+            btnWriteAppend.Text = "Write Append";
+            btnWriteAppend.UseVisualStyleBackColor = true;
+            btnWriteAppend.Click += btnWriteAppend_Click;
             // 
             // button6
             // 
@@ -282,7 +285,7 @@
             // 
             statusStrip.ImageScalingSize = new Size(20, 20);
             statusStrip.Items.AddRange(new ToolStripItem[] { lblStatus, toolStripStatusLabel1 });
-            statusStrip.Location = new Point(0, 527);
+            statusStrip.Location = new Point(0, 615);
             statusStrip.Name = "statusStrip";
             statusStrip.Size = new Size(994, 22);
             statusStrip.TabIndex = 18;
@@ -297,11 +300,23 @@
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             toolStripStatusLabel1.Size = new Size(0, 16);
             // 
+            // trackBar1
+            // 
+            trackBar1.Location = new Point(149, 523);
+            trackBar1.Maximum = 100;
+            trackBar1.Minimum = 1;
+            trackBar1.Name = "trackBar1";
+            trackBar1.Size = new Size(415, 56);
+            trackBar1.TabIndex = 19;
+            trackBar1.Value = 1;
+            trackBar1.Scroll += trackBar1_Scroll;
+            // 
             // frmNotepad
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(994, 549);
+            ClientSize = new Size(994, 637);
+            Controls.Add(trackBar1);
             Controls.Add(statusStrip);
             Controls.Add(lbxinfo);
             Controls.Add(txtInfo);
@@ -315,7 +330,7 @@
             Controls.Add(button14);
             Controls.Add(button7);
             Controls.Add(button6);
-            Controls.Add(button5);
+            Controls.Add(btnWriteAppend);
             Controls.Add(btnDelete);
             Controls.Add(btnRead);
             Controls.Add(btnWrite);
@@ -329,6 +344,7 @@
             menuStrip1.PerformLayout();
             statusStrip.ResumeLayout(false);
             statusStrip.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)trackBar1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -347,7 +363,7 @@
         private Button btnWrite;
         private Button btnRead;
         private Button btnDelete;
-        private Button button5;
+        private Button btnWriteAppend;
         private Button button6;
         private Button button7;
         private Button button8;
@@ -364,5 +380,6 @@
         private StatusStrip statusStrip;
         private ToolStripStatusLabel lblStatus;
         private ToolStripStatusLabel toolStripStatusLabel1;
+        private TrackBar trackBar1;
     }
 }
