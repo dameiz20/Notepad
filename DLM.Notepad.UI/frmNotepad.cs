@@ -3,6 +3,7 @@ namespace DLM.Notepad.UI
     public partial class frmNotepad : Form
     {
         string filename = @"c:\users\public\data.txt";
+        List<string> lines;
         public frmNotepad()
         {
             InitializeComponent();
@@ -167,11 +168,83 @@ namespace DLM.Notepad.UI
                 //Clean Up
                 streamWriter.Close();
 
-                lblStatus.Text =$"File written ({ filename})";
+                lblStatus.Text = $"File written ({filename})";
             }
             catch (Exception ex)
             {
 
+                lblStatus.Text = ex.Message;
+                lblStatus.ForeColor = Color.Red;
+            }
+        }
+
+        private void btnCopy_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                lblStatus.ForeColor = Color.Blue;
+                string targetfile = Path.GetDirectoryName(filename) + "\\data_copy.txt";
+
+                if (!string.IsNullOrEmpty(filename) && File.Exists(filename))
+                {
+                    File.Copy(filename, targetfile);
+                    lblStatus.Text = $"{filename} was copied.";
+                }
+                else
+                {
+                    throw new FileNotFoundException($"{filename} not set or does not exist");
+                }
+            }
+            catch (FileNotFoundException ex)
+            {
+                lblStatus.Text = ex.Message;
+                lblStatus.ForeColor = Color.Purple;
+            }
+            catch (Exception ex)
+            {
+                lblStatus.Text = ex.Message;
+                lblStatus.ForeColor = Color.Red;
+            }
+        }
+
+        private void btnReadByLine_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                lblStatus.ForeColor = Color.Blue;
+
+                StreamReader streamReader;
+                lblInfo.Text = string.Empty;
+
+                if (File.Exists(filename))
+                {
+                    streamReader = File.OpenText(filename);
+                    lbxinfo.Items.Clear();
+
+                    
+                    lines = new List<string>();
+                    //Loop while i am not at the end of file.
+                    while (!streamReader.EndOfStream)
+                    {
+                        lines.Add(streamReader.ReadLine());
+                        
+                    }
+
+                    //Bind the lines to the list box
+                    lbxinfo.DataSource = lines;
+
+                    streamReader.Close();
+                    streamReader = null;
+
+                    lblStatus.Text = $"Succefully read {lines.Count} records.";
+                }
+                else
+                {
+                    throw new Exception(filename + " does not exist");
+                }
+            }
+            catch (Exception ex)
+            {
                 lblStatus.Text = ex.Message;
                 lblStatus.ForeColor = Color.Red;
             }

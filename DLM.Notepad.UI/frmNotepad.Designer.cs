@@ -42,8 +42,8 @@
             btnRead = new Button();
             btnDelete = new Button();
             btnWriteAppend = new Button();
-            button6 = new Button();
-            button7 = new Button();
+            btnCopy = new Button();
+            btnReadByLine = new Button();
             button8 = new Button();
             button9 = new Button();
             button10 = new Button();
@@ -169,23 +169,25 @@
             btnWriteAppend.UseVisualStyleBackColor = true;
             btnWriteAppend.Click += btnWriteAppend_Click;
             // 
-            // button6
+            // btnCopy
             // 
-            button6.Location = new Point(12, 225);
-            button6.Name = "button6";
-            button6.Size = new Size(131, 29);
-            button6.TabIndex = 6;
-            button6.Text = "button6";
-            button6.UseVisualStyleBackColor = true;
+            btnCopy.Location = new Point(12, 225);
+            btnCopy.Name = "btnCopy";
+            btnCopy.Size = new Size(131, 29);
+            btnCopy.TabIndex = 6;
+            btnCopy.Text = "Copy";
+            btnCopy.UseVisualStyleBackColor = true;
+            btnCopy.Click += btnCopy_Click;
             // 
-            // button7
+            // btnReadByLine
             // 
-            button7.Location = new Point(12, 260);
-            button7.Name = "button7";
-            button7.Size = new Size(131, 29);
-            button7.TabIndex = 7;
-            button7.Text = "button7";
-            button7.UseVisualStyleBackColor = true;
+            btnReadByLine.Location = new Point(12, 260);
+            btnReadByLine.Name = "btnReadByLine";
+            btnReadByLine.Size = new Size(131, 29);
+            btnReadByLine.TabIndex = 7;
+            btnReadByLine.Text = "Read By Line";
+            btnReadByLine.UseVisualStyleBackColor = true;
+            btnReadByLine.Click += btnReadByLine_Click;
             // 
             // button8
             // 
@@ -328,8 +330,8 @@
             Controls.Add(button12);
             Controls.Add(button13);
             Controls.Add(button14);
-            Controls.Add(button7);
-            Controls.Add(button6);
+            Controls.Add(btnReadByLine);
+            Controls.Add(btnCopy);
             Controls.Add(btnWriteAppend);
             Controls.Add(btnDelete);
             Controls.Add(btnRead);
@@ -364,8 +366,8 @@
         private Button btnRead;
         private Button btnDelete;
         private Button btnWriteAppend;
-        private Button button6;
-        private Button button7;
+        private Button btnCopy;
+        private Button btnReadByLine;
         private Button button8;
         private Button button9;
         private Button button10;
