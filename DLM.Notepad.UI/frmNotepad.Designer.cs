@@ -39,8 +39,8 @@
             undoToolStripMenuItem = new ToolStripMenuItem();
             btnTimerToggle = new Button();
             btnWrite = new Button();
-            button3 = new Button();
-            button4 = new Button();
+            btnRead = new Button();
+            btnDelete = new Button();
             button5 = new Button();
             button6 = new Button();
             button7 = new Button();
@@ -55,8 +55,11 @@
             txtInfo = new TextBox();
             lbxinfo = new ListBox();
             timer1 = new System.Windows.Forms.Timer(components);
-            lblStatus = new StatusStrip();
+            statusStrip = new StatusStrip();
+            lblStatus = new ToolStripStatusLabel();
+            toolStripStatusLabel1 = new ToolStripStatusLabel();
             menuStrip1.SuspendLayout();
+            statusStrip.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
@@ -134,23 +137,25 @@
             btnWrite.UseVisualStyleBackColor = true;
             btnWrite.Click += btnWrite_Click;
             // 
-            // button3
+            // btnRead
             // 
-            button3.Location = new Point(12, 120);
-            button3.Name = "button3";
-            button3.Size = new Size(131, 29);
-            button3.TabIndex = 3;
-            button3.Text = "button3";
-            button3.UseVisualStyleBackColor = true;
+            btnRead.Location = new Point(12, 120);
+            btnRead.Name = "btnRead";
+            btnRead.Size = new Size(131, 29);
+            btnRead.TabIndex = 3;
+            btnRead.Text = "Read";
+            btnRead.UseVisualStyleBackColor = true;
+            btnRead.Click += btnRead_Click;
             // 
-            // button4
+            // btnDelete
             // 
-            button4.Location = new Point(12, 155);
-            button4.Name = "button4";
-            button4.Size = new Size(131, 29);
-            button4.TabIndex = 4;
-            button4.Text = "button4";
-            button4.UseVisualStyleBackColor = true;
+            btnDelete.Location = new Point(12, 155);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(131, 29);
+            btnDelete.TabIndex = 4;
+            btnDelete.Text = "Delete";
+            btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += btnDelete_Click;
             // 
             // button5
             // 
@@ -273,20 +278,31 @@
             timer1.Interval = 1000;
             timer1.Tick += timer1_Tick;
             // 
+            // statusStrip
+            // 
+            statusStrip.ImageScalingSize = new Size(20, 20);
+            statusStrip.Items.AddRange(new ToolStripItem[] { lblStatus, toolStripStatusLabel1 });
+            statusStrip.Location = new Point(0, 527);
+            statusStrip.Name = "statusStrip";
+            statusStrip.Size = new Size(994, 22);
+            statusStrip.TabIndex = 18;
+            // 
             // lblStatus
             // 
-            lblStatus.ImageScalingSize = new Size(20, 20);
-            lblStatus.Location = new Point(0, 525);
             lblStatus.Name = "lblStatus";
-            lblStatus.Size = new Size(994, 24);
-            lblStatus.TabIndex = 18;
+            lblStatus.Size = new Size(0, 16);
+            // 
+            // toolStripStatusLabel1
+            // 
+            toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            toolStripStatusLabel1.Size = new Size(0, 16);
             // 
             // frmNotepad
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(994, 549);
-            Controls.Add(lblStatus);
+            Controls.Add(statusStrip);
             Controls.Add(lbxinfo);
             Controls.Add(txtInfo);
             Controls.Add(lblInfo);
@@ -300,8 +316,8 @@
             Controls.Add(button7);
             Controls.Add(button6);
             Controls.Add(button5);
-            Controls.Add(button4);
-            Controls.Add(button3);
+            Controls.Add(btnDelete);
+            Controls.Add(btnRead);
             Controls.Add(btnWrite);
             Controls.Add(btnTimerToggle);
             Controls.Add(menuStrip1);
@@ -311,6 +327,8 @@
             Text = "Notepad";
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
+            statusStrip.ResumeLayout(false);
+            statusStrip.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -327,8 +345,8 @@
         private ToolStripMenuItem undoToolStripMenuItem;
         private Button btnTimerToggle;
         private Button btnWrite;
-        private Button button3;
-        private Button button4;
+        private Button btnRead;
+        private Button btnDelete;
         private Button button5;
         private Button button6;
         private Button button7;
@@ -343,6 +361,8 @@
         private TextBox txtInfo;
         private ListBox lbxinfo;
         private System.Windows.Forms.Timer timer1;
-        private StatusStrip lblStatus;
+        private StatusStrip statusStrip;
+        private ToolStripStatusLabel lblStatus;
+        private ToolStripStatusLabel toolStripStatusLabel1;
     }
 }

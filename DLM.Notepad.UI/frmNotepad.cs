@@ -2,6 +2,7 @@ namespace DLM.Notepad.UI
 {
     public partial class frmNotepad : Form
     {
+        string filename = @"c:\users\public\data.txt";
         public frmNotepad()
         {
             InitializeComponent();
@@ -50,10 +51,10 @@ namespace DLM.Notepad.UI
         {
             try
             {
-                lblStatus.ForeColor = Color.Blue;
+                statusStrip.ForeColor = Color.Blue;
 
                 //Designate the file path and escape the slashes
-                string strFileName = "c:\\Users\\public\\data.txt";
+                string strFileName = "c:\\Users\\Public\\data.txt";
 
                 StreamWriter streamWriter;
 
@@ -72,6 +73,67 @@ namespace DLM.Notepad.UI
             catch (Exception ex)
             {
 
+                lblStatus.Text = ex.Message;
+                lblStatus.ForeColor = Color.Red;
+            }
+        }
+
+        private void btnRead_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                statusStrip.ForeColor = Color.Blue;
+
+                string strFileName = @"c:\Users\Public\data.txt";
+
+                StreamReader streamReader;
+                lblInfo.Text = string.Empty;
+
+                if (File.Exists(strFileName))
+                {
+                    streamReader = File.OpenText(strFileName);
+                    string contents = streamReader.ReadToEnd();
+
+                    streamReader.Close();
+                    streamReader = null;
+
+                    lblInfo.Text = contents;
+                    lblStatus.Text = "Succefully read " + strFileName;
+                }
+                else
+                {
+                    throw new Exception(strFileName + " does not exist");
+                }
+            }
+            catch (Exception ex)
+            {
+                lblStatus.Text = ex.Message;
+                lblStatus.ForeColor = Color.Red;
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                lblStatus.ForeColor = Color.Blue;
+                if(!string.IsNullOrEmpty(filename) && File.Exists(filename))
+                {
+                    File.Delete(filename);
+                    lblStatus.Text = $"{filename} was deleted";
+                }
+                else
+                {
+                    throw new FileNotFoundException($"{filename} not set or does not exist");
+                }
+            }
+            catch(FileNotFoundException ex)
+            {
+                lblStatus.Text = ex.Message;
+                lblStatus.ForeColor = Color.Purple;
+            }
+            catch (Exception ex)
+            {
                 lblStatus.Text = ex.Message;
                 lblStatus.ForeColor = Color.Red;
             }
