@@ -1,3 +1,5 @@
+using System.Drawing.Printing;
+
 namespace DLM.Notepad.UI
 {
     public partial class frmNotepad : Form
@@ -5,6 +7,7 @@ namespace DLM.Notepad.UI
         string filename = @"c:\users\public\data.txt";
         string folder = string.Empty;
         List<string> lines;
+        PrintPreviewDialog printPreviewDialog;
         public frmNotepad()
         {
             InitializeComponent();
@@ -407,6 +410,59 @@ namespace DLM.Notepad.UI
                 lblStatus.Text = $"Selected Folder: {folder}";
 
             }
+        }
+
+        private void btnSetFont_Click(object sender, EventArgs e)
+        {
+            FontDialog fontDialog = new FontDialog();
+
+            if (fontDialog.ShowDialog() == DialogResult.OK)
+            {
+                foreach (Control control in this.Controls)
+                {
+                    control.Font = fontDialog.Font;
+                }
+            }
+        }
+
+        private void btnChangeStlye_Click(object sender, EventArgs e)
+        {
+            FontDialog fontDialog = new FontDialog();
+
+            if (fontDialog.ShowDialog() == DialogResult.OK)
+            {
+                foreach (Control control in this.Controls)
+                {
+                    control.Font = new Font(control.Font.FontFamily,
+                                            control.Font.Size,
+                                            fontDialog.Font.Style);
+                }
+            }
+        }
+
+        private PrintDocument docToPrint = new PrintDocument();
+        private void btnPrintPreview_Click(object sender, EventArgs e)
+        {
+            printPreviewDialog = new PrintPreviewDialog();
+
+            printPreviewDialog.Document = docToPrint;
+
+            printPreviewDialog.Document.PrintPage += new PrintPageEventHandler(document_PrintPage);
+
+            DialogResult result = printPreviewDialog.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                docToPrint.Print();
+            }  
+        }
+        private void document_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            string text = "Hello C# Intermediate";
+            Font printFont = new Font("Arial", 35, System.Drawing.FontStyle.Regular);
+
+            // drawe the content
+            e.Graphics.DrawString(text, printFont, Brushes.Black, 10, 10);
         }
     }
 }

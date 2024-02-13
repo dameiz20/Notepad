@@ -44,7 +44,7 @@
             btnWriteAppend = new Button();
             btnCopy = new Button();
             btnReadByLine = new Button();
-            button8 = new Button();
+            btnSetFont = new Button();
             btnSelectDirectory = new Button();
             btnChangeButtonColor = new Button();
             btnSelectColor = new Button();
@@ -59,6 +59,8 @@
             lblStatus = new ToolStripStatusLabel();
             toolStripStatusLabel1 = new ToolStripStatusLabel();
             trackBar1 = new TrackBar();
+            btnChangeStlye = new Button();
+            btnPrintPreview = new Button();
             menuStrip1.SuspendLayout();
             statusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)trackBar1).BeginInit();
@@ -189,14 +191,15 @@
             btnReadByLine.UseVisualStyleBackColor = true;
             btnReadByLine.Click += btnReadByLine_Click;
             // 
-            // button8
+            // btnSetFont
             // 
-            button8.Location = new Point(12, 505);
-            button8.Name = "button8";
-            button8.Size = new Size(131, 29);
-            button8.TabIndex = 14;
-            button8.Text = "button8";
-            button8.UseVisualStyleBackColor = true;
+            btnSetFont.Location = new Point(12, 505);
+            btnSetFont.Name = "btnSetFont";
+            btnSetFont.Size = new Size(131, 29);
+            btnSetFont.TabIndex = 14;
+            btnSetFont.Text = "Set Font";
+            btnSetFont.UseVisualStyleBackColor = true;
+            btnSetFont.Click += btnSetFont_Click;
             // 
             // btnSelectDirectory
             // 
@@ -206,7 +209,6 @@
             btnSelectDirectory.TabIndex = 13;
             btnSelectDirectory.Text = "Select Directory";
             btnSelectDirectory.UseVisualStyleBackColor = true;
-            btnSelectDirectory.Click += button9_Click;
             // 
             // btnChangeButtonColor
             // 
@@ -319,17 +321,39 @@
             trackBar1.Value = 1;
             trackBar1.Scroll += trackBar1_Scroll;
             // 
+            // btnChangeStlye
+            // 
+            btnChangeStlye.Location = new Point(12, 540);
+            btnChangeStlye.Name = "btnChangeStlye";
+            btnChangeStlye.Size = new Size(131, 29);
+            btnChangeStlye.TabIndex = 20;
+            btnChangeStlye.Text = "Change Style";
+            btnChangeStlye.UseVisualStyleBackColor = true;
+            btnChangeStlye.Click += btnChangeStlye_Click;
+            // 
+            // btnPrintPreview
+            // 
+            btnPrintPreview.Location = new Point(12, 575);
+            btnPrintPreview.Name = "btnPrintPreview";
+            btnPrintPreview.Size = new Size(131, 29);
+            btnPrintPreview.TabIndex = 21;
+            btnPrintPreview.Text = "Print Preview";
+            btnPrintPreview.UseVisualStyleBackColor = true;
+            btnPrintPreview.Click += btnPrintPreview_Click;
+            // 
             // frmNotepad
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(994, 637);
+            Controls.Add(btnPrintPreview);
+            Controls.Add(btnChangeStlye);
             Controls.Add(trackBar1);
             Controls.Add(statusStrip);
             Controls.Add(lbxinfo);
             Controls.Add(txtInfo);
             Controls.Add(lblInfo);
-            Controls.Add(button8);
+            Controls.Add(btnSetFont);
             Controls.Add(btnSelectDirectory);
             Controls.Add(btnChangeButtonColor);
             Controls.Add(btnSelectColor);
@@ -374,7 +398,7 @@
         private Button btnWriteAppend;
         private Button btnCopy;
         private Button btnReadByLine;
-        private Button button8;
+        private Button btnSetFont;
         private Button btnSelectDirectory;
         private Button btnChangeButtonColor;
         private Button btnSelectColor;
@@ -389,5 +413,7 @@
         private ToolStripStatusLabel lblStatus;
         private ToolStripStatusLabel toolStripStatusLabel1;
         private TrackBar trackBar1;
+        private Button btnChangeStlye;
+        private Button btnPrintPreview;
     }
 }
